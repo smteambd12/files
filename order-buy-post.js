@@ -1,3 +1,5 @@
+/*--[ SM Post Buy Now Pdf ]--*/
+
       function updatePaymentNumber() {
       const paymentMethod = document.getElementById("payment-method").value;
       const paymentNumber = paymentMethod === "bkash" ? "+8801676110991" : "+8801676110991";
@@ -118,3 +120,6 @@ function generatePDF(orderData) {
     document.getElementById("product-price-field").value = localStorage.getItem("productPrice");
     document.getElementById("product-code-field").value = localStorage.getItem("productCode");
   };
+
+/*--[ SM wc-fs PopUp v1.9 ]--*/
+const popup=document.getElementById("wc-fs"),clock=document.getElementById("clock"),flashSaleTime="December 24, 2024 23:59:59",popupDelay=3e3,redirectLink="https://example.com",newTab=!0;function showPopup(){popup.classList.add("show"),startCountdown("December 24, 2024 23:59:59")}function closePopup(){popup.classList.remove("show")}function openLink(){window.open("https://example.com","_blank")}function startCountdown(e){let t=document.getElementById("days"),$=document.getElementById("hours"),o=document.getElementById("minutes"),n=document.getElementById("seconds");function l(){let l=new Date().getTime(),s=new Date(e).getTime()-l;if(s<0){clearInterval(p),clock.innerHTML="<p>Promo Ended!</p>";return}let c=Math.floor(s/864e5),m=Math.floor(s%864e5/36e5),u=Math.floor(s%36e5/6e4),i=Math.floor(s%6e4/1e3);t.textContent=c<10?"0"+c:c,$.textContent=m<10?"0"+m:m,o.textContent=u<10?"0"+u:u,n.textContent=i<10?"0"+i:i}l();let p=setInterval(l,1e3)}setTimeout(showPopup,3e3);
