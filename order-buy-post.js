@@ -122,4 +122,61 @@ function generatePDF(orderData) {
   };
 
 /*--[ SM wc-fs PopUp v1.9 ]--*/
-const popup=document.getElementById("wc-fs"),clock=document.getElementById("clock"),flashSaleTime="December 24, 2024 23:59:59",popupDelay=3e3,redirectLink="https://example.com",newTab=!0;function showPopup(){popup.classList.add("show"),startCountdown("December 24, 2024 23:59:59")}function closePopup(){popup.classList.remove("show")}function openLink(){window.open("https://example.com","_blank")}function startCountdown(e){let t=document.getElementById("days"),$=document.getElementById("hours"),o=document.getElementById("minutes"),n=document.getElementById("seconds");function l(){let l=new Date().getTime(),s=new Date(e).getTime()-l;if(s<0){clearInterval(p),clock.innerHTML="<p>Promo Ended!</p>";return}let c=Math.floor(s/864e5),m=Math.floor(s%864e5/36e5),u=Math.floor(s%36e5/6e4),i=Math.floor(s%6e4/1e3);t.textContent=c<10?"0"+c:c,$.textContent=m<10?"0"+m:m,o.textContent=u<10?"0"+u:u,n.textContent=i<10?"0"+i:i}l();let p=setInterval(l,1e3)}setTimeout(showPopup,3e3);
+  const popup = document.getElementById("wc-fs");
+  const clock = document.getElementById("clock");
+  const flashSaleTime = "December 24, 2024 23:59:59"; // Countdown deadline
+  const popupDelay = 3000; // Show popup after 3 seconds
+  const redirectLink = "https://example.com"; // "Shop Now" link
+  const newTab = true; // Open in new tab or same tab
+
+  function showPopup() {
+    popup.classList.add("show");
+    startCountdown(flashSaleTime);
+  }
+
+  function closePopup() {
+    popup.classList.remove("show");
+  }
+
+  function openLink() {
+    if (newTab) {
+      window.open(redirectLink, "_blank");
+    } else {
+      window.location.href = redirectLink;
+    }
+  }
+
+  function startCountdown(endTime) {
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = new Date(endTime).getTime() - now;
+
+      if (distance < 0) {
+        clearInterval(countdown);
+        clock.innerHTML = "<p>Promo Ended!</p>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.textContent = days < 10 ? "0" + days : days;
+      hoursEl.textContent = hours < 10 ? "0" + hours : hours;
+      minutesEl.textContent = minutes < 10 ? "0" + minutes : minutes;
+      secondsEl.textContent = seconds < 10 ? "0" + seconds : seconds;
+    }
+
+    updateCountdown();
+    const countdown = setInterval(updateCountdown, 1000);
+  }
+
+  // Show popup after delay
+  setTimeout(showPopup, popupDelay);
+
