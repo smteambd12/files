@@ -109,7 +109,7 @@ function generatePDF(orderData) {
         alert("Order Confirmed! PDF file will download automatically.");
         generatePDF(orderData); // Generate the PDF after successful Telegram message
         setTimeout(() => {
-          window.location.href = "https://smteamworldnow.blogspot.com";
+          window.location.href = "";
         }, 5000);
       })
       .catch(error => console.error("Error:", error));
